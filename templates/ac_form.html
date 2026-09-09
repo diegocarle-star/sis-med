@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Nueva Auditoría Alto Costo{% endblock %}
+{% block topbar_title %}Nueva Auditoría — Alto Costo{% endblock %}
+{% block content %}
+<div class="breadcrumb"><a href="/alto-costo">Alto Costo</a> › Nueva</div>
+<div class="page-header"><h1>Nueva Auditoría de Alto Costo</h1></div>
+<div class="card" style="max-width:740px;">
+  <div class="card-body">
+    <form method="post">
+      <div class="form-grid">
+        <div class="form-group"><label>Afiliado</label>
+          <select name="afiliado_id" required>
+            {% for a in db.afiliados %}<option value="{{ a.id }}">{{ a.apellido }}, {{ a.nombre }}</option>{% endfor %}
+          </select>
+        </div>
+        <div class="form-group"><label>Médico Especialista</label>
+          <select name="medico_id" required>
+            {% for m in db.medicos %}<option value="{{ m.id }}">Dr/a. {{ m.apellido }} ({{ m.especialidad }})</option>{% endfor %}
+          </select>
+        </div>
+        <div class="form-group"><label>Medicamento</label><input name="medicamento" required placeholder="Ej: Adalimumab"></div>
+        <div class="form-group"><label>Tipo</label><select name="tipo"><option>ONC</option><option>BIO</option><option>INM</option></select></div>
+        <div class="form-group"><label>Prioridad</label><select name="prioridad"><option>Media</option><option>Alta</option><option>Urgente</option></select></div>
+        <div class="form-group"><label>Costo Estimado ($)</label><input name="costo_estimado" type="number" placeholder="75000"></div>
+      </div>
+      <div class="form-actions">
+        <a href="/alto-costo" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Registrar auditoría</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

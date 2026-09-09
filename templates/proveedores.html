@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Proveedores{% endblock %}
+{% block topbar_title %}Proveedores{% endblock %}
+{% block topbar_actions %}
+  <a href="/proveedores/nuevo" class="btn btn-primary">+ Nuevo proveedor</a>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Proveedores</h1>
+  <p>Droguerías, laboratorios y distribuidores de medicamentos de alto costo</p>
+</div>
+
+<div class="card">
+  <div class="card-header"><span class="card-title">🏢 Proveedores registrados ({{ proveedores|length }})</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Proveedor</th><th>CUIT</th><th>Tipo</th><th>Email</th><th>Teléfono</th><th>Contactos</th><th>Estado</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for p in proveedores %}
+        <tr>
+          <td><strong>{{ p.nombre }}</strong></td>
+          <td style="font-family:'DM Mono';font-size:12px;">{{ p.cuit }}</td>
+          <td>
+            {% if p.tipo == 'Droguería' %}<span class="badge badge-blue">Droguería</span>
+            {% else %}<span class="badge badge-purple">Laboratorio</span>{% endif %}
+          </td>
+          <td style="color:var(--azul-claro);">{{ p.email }}</td>
+          <td>{{ p.telefono }}</td>
+          <td style="text-align:center;">{{ p.contactos }}</td>
+          <td><span class="badge badge-green">● {{ p.estado }}</span></td>
+          <td>
+            <form method="post" action="/proveedores/{{ p.id }}/eliminar" onsubmit="return confirm('¿Eliminar proveedor?')">
+              <button type="submit" class="btn btn-danger btn-sm">✗</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

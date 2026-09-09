@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Alto Costo{% endblock %}
+{% block topbar_title %}Auditoría de Alto Costo{% endblock %}
+{% block topbar_actions %}
+  <a href="/alto-costo/nuevo" class="btn btn-primary">+ Nueva auditoría</a>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Auditoría de Alto Costo</h1>
+  <p>Medicamentos que requieren autorización y evaluación especializada</p>
+</div>
+
+<div class="stats-grid" style="grid-template-columns: repeat(4,1fr); margin-bottom:24px;">
+  <div class="stat-card stat-accent">
+    <div class="stat-label">Total Pendientes</div>
+    <div class="stat-value">{{ casos|length }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Costo Total Estim.</div>
+    <div class="stat-value" style="font-size:20px;">${{ "{:,.0f}".format(total_costo) }}</div>
+  </div>
+  <div class="stat-card stat-yellow">
+    <div class="stat-label">Especializados</div>
+    <div class="stat-value">0</div>
+  </div>
+  <div class="stat-card stat-green">
+    <div class="stat-label">Req. Autorización</div>
+    <div class="stat-value">{{ casos|length }}</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="card-title">💊 Auditorías Pendientes — Alto Costo</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Prioridad</th>
+          <th>Paciente</th>
+          <th>Fecha Prescripción</th>
+          <th>Médico Especialista</th>
+          <th>Medicamento</th>
+          <th>Tipo</th>
+          <th>Costo Estim.</th>
+          <th>Autorización</th>
+          <th>Estado</th>
+          <th>Días</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in casos %}
+        <tr>
+          <td><span class="badge badge-yellow">{{ c.prioridad }}</span></td>
+          <td>
+            <strong>{{ c.afiliado.apellido }}, {{ c.afiliado.nombre }}</strong><br>
+            <span style="font-size:11px;color:var(--gris-texto);">DNI: {{ c.afiliado.dni }}</span>
+          </td>
+          <td style="color:var(--gris-texto);">{{ c.fecha_prescripcion }}</td>
+          <td>
+            Dr/a. {{ c.medico.apellido }}<br>
+            <span style="font-size:11px;color:var(--gris-texto);">Mat. {{ c.medico.matricula }}</span>
+          </td>
+          <td><strong>{{ c.medicamento }}</strong></td>
+          <td><span class="badge badge-gray">{{ c.tipo }}</span></td>
+          <td style="font-family:'DM Mono';color:var(--azul-principal);">${{ "{:,.0f}".format(c.costo_estimado) }}</td>
+          <td><span class="badge badge-red">{{ c.autorizacion }}</span></td>
+          <td><span class="badge badge-yellow">⚡ {{ c.estado }}</span></td>
+          <td style="font-family:'DM Mono';">{{ c.dias }}d</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

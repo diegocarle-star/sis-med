@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Afiliados{% endblock %}
+{% block topbar_title %}Consulta de Afiliados{% endblock %}
+{% block content %}
+<div class="page-header"><h1>Afiliados</h1><p>Consulta y gestión de afiliados registrados en el sistema</p></div>
+<form method="get" class="search-bar">
+  <div class="search-input-wrap"><span class="search-icon">🔍</span><input name="q" value="{{ request.args.get('q','') }}" placeholder="Buscar por apellido o DNI…" style="padding-left:32px;"></div>
+  <button type="submit" class="btn btn-secondary">Buscar</button>
+</form>
+<div class="card">
+  <div class="card-header"><span class="card-title">👤 Afiliados ({{ afiliados|length }})</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>ID</th><th>Apellido y Nombre</th><th>DNI</th><th>Edad</th><th>Obra Social</th><th>Email</th><th></th></tr></thead>
+      <tbody>
+        {% for a in afiliados %}
+        <tr>
+          <td style="font-family:'DM Mono';font-size:11px;color:var(--gris-texto);">{{ a.id }}</td>
+          <td><strong>{{ a.apellido }}, {{ a.nombre }}</strong></td>
+          <td style="font-family:'DM Mono';">{{ a.dni }}</td>
+          <td>{{ a.edad }} años</td>
+          <td>{{ a.obra_social }}</td>
+          <td style="color:var(--azul-claro);">{{ a.email }}</td>
+          <td><a href="/afiliados/{{ a.id }}" class="btn btn-secondary btn-sm">Ver historial</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

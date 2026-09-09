@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Nuevo Empadronamiento{% endblock %}
+{% block topbar_title %}Nuevo Empadronamiento{% endblock %}
+
+{% block content %}
+<div class="breadcrumb">
+  <a href="/empadronamientos">Empadronamientos</a> › Nuevo
+</div>
+<div class="page-header"><h1>Registrar Empadronamiento</h1><p>Crónico · Diabetes · Discapacidad</p></div>
+
+<div class="card" style="max-width:740px;">
+  <div class="card-body">
+    <form method="post">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Tipo de formulario</label>
+          <select name="tipo" required>
+            <option value="Cronico">Crónico</option>
+            <option value="Diabetes">Diabetes</option>
+            <option value="Discapacidad">Discapacidad</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Afiliado</label>
+          <select name="afiliado_id" required>
+            {% for a in db.afiliados %}
+            <option value="{{ a.id }}">{{ a.apellido }}, {{ a.nombre }} — DNI {{ a.dni }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Médico tratante</label>
+          <select name="medico_id" required>
+            {% for m in db.medicos %}
+            <option value="{{ m.id }}">Dr/a. {{ m.apellido }}, {{ m.nombre }} ({{ m.especialidad }})</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Patología</label>
+          <input name="patologia" placeholder="Ej: Diabetes tipo 2" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Diagnóstico y justificación</label>
+        <textarea name="diagnostico" rows="3" placeholder="Descripción clínica del diagnóstico…" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Tratamiento farmacológico</label>
+        <input name="tratamiento" placeholder="Ej: Insulina NPH 10u/día" required>
+      </div>
+      <div class="form-actions">
+        <a href="/empadronamientos" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Guardar empadronamiento</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

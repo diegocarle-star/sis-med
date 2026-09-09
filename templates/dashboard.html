@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block topbar_title %}Dashboard — Visión general{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Bienvenido al Sistema de Auditoría Médica</h1>
+  <p>Gestión de Cronicidad, Alto Costo y Discapacidad · Med Sis SRL</p>
+</div>
+
+<!-- Stats row 1 -->
+<div class="stats-grid">
+  <div class="stat-card stat-accent">
+    <div class="stat-label">Total Empadronamientos</div>
+    <div class="stat-value">{{ stats.total_empadronamientos }}</div>
+    <div class="stat-sub">Todos los tipos</div>
+  </div>
+  <div class="stat-card stat-yellow">
+    <div class="stat-label">Pendientes</div>
+    <div class="stat-value">{{ stats.pendientes }}</div>
+    <div class="stat-sub">Requieren auditoría</div>
+  </div>
+  <div class="stat-card stat-green">
+    <div class="stat-label">Aprobados</div>
+    <div class="stat-value">{{ stats.aprobados }}</div>
+    <div class="stat-sub">{{ "%.0f"|format(stats.aprobados / stats.total_empadronamientos * 100 if stats.total_empadronamientos else 0) }}% aprobación</div>
+  </div>
+  <div class="stat-card stat-red">
+    <div class="stat-label">Rechazados</div>
+    <div class="stat-value">{{ stats.rechazados }}</div>
+    <div class="stat-sub">Denegados</div>
+  </div>
+</div>
+
+<!-- Stats row 2 -->
+<div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
+  <div class="stat-card">
+    <div class="stat-label">Crónicos</div>
+    <div class="stat-value" style="color: var(--azul-claro);">{{ stats.cronicos }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Diabetes</div>
+    <div class="stat-value" style="color: var(--verde);">{{ stats.diabetes }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Discapacidad</div>
+    <div class="stat-value" style="color: #8B5CF6;">{{ stats.discapacidad }}</div>
+  </div>
+  <div class="stat-card stat-red">
+    <div class="stat-label">Alto Costo Pend.</div>
+    <div class="stat-value">{{ stats.alto_costo_total }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Proveedores</div>
+    <div class="stat-value">{{ stats.proveedores }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Recetas</div>
+    <div class="stat-value">{{ stats.recetas }}</div>
+  </div>
+</div>
+
+<!-- Two columns -->
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+  <!-- Últimos empadronamientos -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">📋 Empadronamientos Recientes</span>
+      <a href="/empadronamientos" class="btn btn-secondary btn-sm">Ver todos</a>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Afiliado</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in emps[:6] %}
+          {% set af = db.afiliados | selectattr('id','eq', e.afiliado_id) | first %}
+          <tr>
+            <td style="font-family: 'DM Mono'; font-size:11px; color:var(--gris-texto);">{{ e.id }}</td>
+            <td>
+              {% if e.tipo == 'Cronico' %}<span class="badge badge-blue">Crónico</span>
+              {% elif e.tipo == 'Diabetes' %}<span class="badge badge-green">Diabetes</span>
+              {% else %}<span class="badge badge-purple">Discap.</span>{% endif %}
+            </td>
+            <td>{{ af.apellido }}, {{ af.nombre[:8] }}</td>
+            <td>
+              {% if e.estado == 'Aprobado' %}<span class="badge badge-green">✓ Aprobado</span>
+              {% elif e.estado == 'Pendiente' %}<span class="badge badge-yellow">⏳ Pendiente</span>
+              {% else %}<span class="badge badge-red">✗ Rechazado</span>{% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Alto Costo -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">💊 Alto Costo Pendiente</span>
+      <a href="/alto-costo" class="btn btn-secondary btn-sm">Ver todos</a>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Medicamento</th>
+            <th>Costo Est.</th>
+            <th>Prio.</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in db.alto_costo[:5] %}
+          <tr>
+            <td style="font-family:'DM Mono';font-size:11px;color:var(--gris-texto);">{{ a.id }}</td>
+            <td>{{ a.medicamento }}</td>
+            <td style="font-family:'DM Mono';">${{ "{:,.0f}".format(a.costo_estimado) }}</td>
+            <td><span class="badge badge-yellow">{{ a.prioridad }}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- Accesos rápidos -->
+<div style="margin-top:20px;">
+  <div class="card">
+    <div class="card-header"><span class="card-title">⚡ Acciones Rápidas</span></div>
+    <div class="card-body" style="display:flex; gap:12px; flex-wrap:wrap;">
+      <a href="/empadronamientos/nuevo" class="btn btn-primary">+ Nuevo Empadronamiento</a>
+      <a href="/alto-costo/nuevo" class="btn btn-primary">+ Alto Costo</a>
+      <a href="/vademecum/nuevo" class="btn btn-secondary">+ Medicamento</a>
+      <a href="/proveedores/nuevo" class="btn btn-secondary">+ Proveedor</a>
+      <a href="/compras/nueva" class="btn btn-secondary">+ Orden de Compra</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

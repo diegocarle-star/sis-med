@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}{{ emp.id }}{% endblock %}
+{% block topbar_title %}Detalle de Empadronamiento{% endblock %}
+
+{% block content %}
+<div class="breadcrumb">
+  <a href="/empadronamientos">Empadronamientos</a> › {{ emp.id }}
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;">
+  <div class="card">
+    <div class="card-header"><span class="card-title">👤 Datos del Afiliado</span></div>
+    <div class="card-body">
+      <table style="width:100%;">
+        <tr><td style="color:var(--gris-texto);width:40%;">Apellido y nombre</td><td><strong>{{ emp.afiliado.apellido }}, {{ emp.afiliado.nombre }}</strong></td></tr>
+        <tr><td style="color:var(--gris-texto);">DNI</td><td>{{ emp.afiliado.dni }}</td></tr>
+        <tr><td style="color:var(--gris-texto);">Edad</td><td>{{ emp.afiliado.edad }} años</td></tr>
+        <tr><td style="color:var(--gris-texto);">Obra Social</td><td>{{ emp.afiliado.obra_social }}</td></tr>
+        <tr><td style="color:var(--gris-texto);">Email</td><td>{{ emp.afiliado.email }}</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">🩺 Profesional Tratante</span></div>
+    <div class="card-body">
+      <table style="width:100%;">
+        <tr><td style="color:var(--gris-texto);width:40%;">Nombre</td><td><strong>Dr/a. {{ emp.medico.nombre }} {{ emp.medico.apellido }}</strong></td></tr>
+        <tr><td style="color:var(--gris-texto);">Matrícula</td><td>{{ emp.medico.matricula }}</td></tr>
+        <tr><td style="color:var(--gris-texto);">Especialidad</td><td>{{ emp.medico.especialidad }}</td></tr>
+        <tr><td style="color:var(--gris-texto);">Email</td><td>{{ emp.medico.email }}</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="grid-column:1/-1;">
+    <div class="card-header">
+      <span class="card-title">📋 Datos del Empadronamiento</span>
+      {% if emp.estado == 'Aprobado' %}<span class="badge badge-green">✓ Aprobado</span>
+      {% elif emp.estado == 'Pendiente' %}<span class="badge badge-yellow">⏳ Pendiente</span>
+      {% else %}<span class="badge badge-red">✗ Rechazado</span>{% endif %}
+    </div>
+    <div class="card-body">
+      <div class="form-grid">
+        <div><label>ID</label><p style="font-family:'DM Mono';">{{ emp.id }}</p></div>
+        <div><label>Tipo</label><p>{{ emp.tipo }}</p></div>
+        <div><label>Fecha</label><p>{{ emp.fecha }}</p></div>
+        <div><label>Patología</label><p>{{ emp.patologia }}</p></div>
+      </div>
+      <div style="margin-top:16px;"><label>Diagnóstico y justificación</label><p>{{ emp.diagnostico }}</p></div>
+      <div style="margin-top:16px;"><label>Tratamiento farmacológico</label><p>{{ emp.tratamiento }}</p></div>
+
+      {% if emp.estado == 'Pendiente' %}
+      <div style="margin-top:24px;display:flex;gap:10px;">
+        <form method="post" action="/empadronamientos/{{ emp.id }}/auditar">
+          <input type="hidden" name="accion" value="aprobar">
+          <button type="submit" class="btn btn-success">✓ Aprobar auditoría</button>
+        </form>
+        <form method="post" action="/empadronamientos/{{ emp.id }}/auditar">
+          <input type="hidden" name="accion" value="rechazar">
+          <button type="submit" class="btn btn-danger">✗ Rechazar</button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

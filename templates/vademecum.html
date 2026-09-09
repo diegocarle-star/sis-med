@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Vademécum{% endblock %}
+{% block topbar_title %}Vademécum{% endblock %}
+{% block topbar_actions %}
+  <a href="/vademecum/nuevo" class="btn btn-primary">+ Agregar medicamento</a>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Vademécum</h1>
+  <p>Catálogo de medicamentos por segmento (ambulatorios, tratamientos prolongados y cronicidad)</p>
+</div>
+
+<form method="get" class="search-bar">
+  <div class="search-input-wrap">
+    <span class="search-icon">🔍</span>
+    <input name="q" value="{{ q }}" placeholder="Buscar por monodroga o nombre comercial…" style="padding-left:32px;">
+  </div>
+  <select name="segmento" style="width:auto;">
+    <option value="">Todos los segmentos</option>
+    <option value="Ambulatorio" {% if seg=='Ambulatorio' %}selected{% endif %}>Ambulatorio</option>
+    <option value="Cronicidad" {% if seg=='Cronicidad' %}selected{% endif %}>Cronicidad</option>
+    <option value="Diabetes" {% if seg=='Diabetes' %}selected{% endif %}>Diabetes</option>
+    <option value="Alto Costo" {% if seg=='Alto Costo' %}selected{% endif %}>Alto Costo</option>
+  </select>
+  <select name="condicion" style="width:auto;">
+    <option value="">Todas las condiciones</option>
+    <option value="Autorizado" {% if cond=='Autorizado' %}selected{% endif %}>Autorizado</option>
+    <option value="Con Auditoría" {% if cond=='Con Auditoría' %}selected{% endif %}>Con Auditoría</option>
+  </select>
+  <button type="submit" class="btn btn-secondary">Buscar</button>
+  <a href="/vademecum" class="btn btn-secondary">Limpiar</a>
+</form>
+
+<div class="card">
+  <div class="card-header">
+    <span class="card-title">📚 Medicamentos ({{ items|length }})</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Monodroga</th><th>Nombre Comercial</th><th>Presentación</th><th>Laboratorio</th><th>Segmento</th><th>Condición</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for i in items %}
+        <tr>
+          <td><strong>{{ i.monodrogra }}</strong></td>
+          <td>{{ i.nombre_comercial }}</td>
+          <td style="color:var(--gris-texto);">{{ i.presentacion }}</td>
+          <td>{{ i.laboratorio }}</td>
+          <td>
+            {% if i.segmento == 'Alto Costo' %}<span class="badge badge-red">{{ i.segmento }}</span>
+            {% elif i.segmento == 'Diabetes' %}<span class="badge badge-green">{{ i.segmento }}</span>
+            {% elif i.segmento == 'Cronicidad' %}<span class="badge badge-blue">{{ i.segmento }}</span>
+            {% else %}<span class="badge badge-gray">{{ i.segmento }}</span>{% endif %}
+          </td>
+          <td>
+            {% if i.condicion == 'Con Auditoría' %}<span class="badge badge-yellow">Con Auditoría</span>
+            {% else %}<span class="badge badge-green">Autorizado</span>{% endif %}
+          </td>
+          <td>
+            <form method="post" action="/vademecum/{{ i.id }}/eliminar" onsubmit="return confirm('¿Eliminar este medicamento?')">
+              <button type="submit" class="btn btn-danger btn-sm">✗</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Med Sis{% endblock %} — Sistema de Auditoría Médica</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+    :root {
+      --azul-principal: #0E4FA0;
+      --azul-oscuro: #083070;
+      --azul-claro: #2D7DD2;
+      --azul-suave: #E8F1FB;
+      --gris-fondo: #F5F7FA;
+      --gris-borde: #DDE3EC;
+      --gris-texto: #64748B;
+      --negro: #1A2233;
+      --verde: #10B981;
+      --amarillo: #F59E0B;
+      --rojo: #EF4444;
+      --blanco: #FFFFFF;
+      --sidebar-w: 240px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gris-fondo);
+      color: var(--negro);
+      display: flex;
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--azul-oscuro);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    .sidebar-brand {
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 36px; height: 36px;
+      background: var(--azul-claro);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: white; font-size: 16px;
+    }
+
+    .brand-name {
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-tagline {
+      color: rgba(255,255,255,0.5);
+      font-size: 10px;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+
+    .sidebar-nav { padding: 16px 0; flex: 1; }
+
+    .nav-section-label {
+      color: rgba(255,255,255,0.35);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      padding: 16px 20px 6px;
+      text-transform: uppercase;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 20px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 400;
+      transition: background 0.15s, color 0.15s;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-item:hover { background: rgba(255,255,255,0.07); color: white; }
+    .nav-item.active { background: rgba(45,125,210,0.25); color: white; border-left-color: var(--azul-claro); font-weight: 500; }
+
+    .nav-icon { font-size: 15px; width: 18px; text-align: center; opacity: 0.85; }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.4);
+      font-size: 11px;
+    }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      background: white;
+      border-bottom: 1px solid var(--gris-borde);
+      padding: 0 28px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+
+    .topbar-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--negro);
+    }
+
+    .topbar-actions { display: flex; align-items: center; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--azul-principal); color: white; }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-secondary { background: white; color: var(--negro); border: 1px solid var(--gris-borde); }
+    .btn-secondary:hover { background: var(--gris-fondo); }
+    .btn-danger { background: #FEE2E2; color: var(--rojo); }
+    .btn-danger:hover { background: #FCA5A5; }
+    .btn-success { background: #D1FAE5; color: #065F46; }
+    .btn-success:hover { background: #6EE7B7; }
+    .btn-sm { padding: 4px 10px; font-size: 12px; }
+
+    .content { padding: 28px; flex: 1; }
+
+    /* ── CARDS ── */
+    .card {
+      background: white;
+      border: 1px solid var(--gris-borde);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--gris-borde);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--negro);
+    }
+
+    .card-body { padding: 20px; }
+
+    /* ── STAT CARDS ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid var(--gris-borde);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gris-texto);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--negro);
+      font-family: 'DM Mono', monospace;
+      line-height: 1;
+    }
+
+    .stat-sub {
+      font-size: 11px;
+      color: var(--gris-texto);
+      margin-top: 4px;
+    }
+
+    .stat-accent { border-left: 3px solid var(--azul-principal); }
+    .stat-green { border-left: 3px solid var(--verde); }
+    .stat-yellow { border-left: 3px solid var(--amarillo); }
+    .stat-red { border-left: 3px solid var(--rojo); }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead th {
+      background: var(--gris-fondo);
+      color: var(--gris-texto);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--gris-borde);
+    }
+
+    tbody tr { border-bottom: 1px solid var(--gris-borde); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--gris-fondo); }
+    tbody td { padding: 11px 14px; vertical-align: middle; }
+
+    /* ── BADGES ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .badge-green  { background: #D1FAE5; color: #065F46; }
+    .badge-yellow { background: #FEF3C7; color: #92400E; }
+    .badge-red    { background: #FEE2E2; color: #991B1B; }
+    .badge-blue   { background: #DBEAFE; color: #1E40AF; }
+    .badge-gray   { background: #F1F5F9; color: #475569; }
+    .badge-purple { background: #EDE9FE; color: #5B21B6; }
+
+    /* ── FORMS ── */
+    .form-group { margin-bottom: 18px; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gris-texto);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--gris-borde);
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-family: inherit;
+      color: var(--negro);
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--azul-claro);
+      box-shadow: 0 0 0 3px rgba(45,125,210,0.12);
+    }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+
+    /* ── ALERTS ── */
+    .alert {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .alert-success { background: #D1FAE5; color: #065F46; border: 1px solid #A7F3D0; }
+    .alert-error   { background: #FEE2E2; color: #991B1B; border: 1px solid #FCA5A5; }
+
+    /* ── SEARCH BAR ── */
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .search-input-wrap { position: relative; flex: 1; min-width: 200px; }
+    .search-input-wrap input { padding-left: 34px; }
+    .search-icon {
+      position: absolute;
+      left: 10px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--gris-texto);
+      font-size: 14px;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--gris-texto);
+    }
+
+    .empty-state-icon { font-size: 40px; margin-bottom: 12px; }
+    .empty-state h3 { font-size: 15px; color: var(--negro); margin-bottom: 6px; }
+    .empty-state p { font-size: 13px; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      margin-bottom: 24px;
+    }
+
+    .page-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--negro);
+      letter-spacing: -0.4px;
+    }
+
+    .page-header p {
+      color: var(--gris-texto);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--gris-texto);
+      margin-bottom: 16px;
+    }
+
+    .breadcrumb a { color: var(--azul-claro); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--gris-borde); border-radius: 3px; }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .main { margin-left: 0; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <a href="/" class="brand-logo">
+      <div class="brand-icon">au</div>
+      <div>
+        <div class="brand-name">Med Sis</div>
+        <div class="brand-tagline">Auditoría Médica</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="sidebar-nav">
+    <div class="nav-section-label">Principal</div>
+    <a href="/" class="nav-item {% if request.endpoint == 'dashboard' %}active{% endif %}">
+      <span class="nav-icon">⬛</span> Dashboard
+    </a>
+    <a href="/estadisticas" class="nav-item {% if request.endpoint == 'estadisticas' %}active{% endif %}">
+      <span class="nav-icon">📊</span> Estadísticas
+    </a>
+
+    <div class="nav-section-label">Auditoría</div>
+    <a href="/empadronamientos" class="nav-item {% if 'empadronamiento' in (request.endpoint or '') %}active{% endif %}">
+      <span class="nav-icon">📋</span> Empadronamientos
+    </a>
+    <a href="/alto-costo" class="nav-item {% if 'alto_costo' in (request.endpoint or '') %}active{% endif %}">
+      <span class="nav-icon">💊</span> Alto Costo
+    </a>
+    <a href="/recetas" class="nav-item {% if request.endpoint == 'recetas' %}active{% endif %}">
+      <span class="nav-icon">📄</span> Recetas
+    </a>
+
+    <div class="nav-section-label">Gestión</div>
+    <a href="/vademecum" class="nav-item {% if 'vademecum' in (request.endpoint or '') %}active{% endif %}">
+      <span class="nav-icon">📚</span> Vademécum
+    </a>
+    <a href="/afiliados" class="nav-item {% if 'afiliado' in (request.endpoint or '') %}active{% endif %}">
+      <span class="nav-icon">👤</span> Afiliados
+    </a>
+    <a href="/proveedores" class="nav-item {% if 'proveedor' in (request.endpoint or '') %}active{% endif %}">
+      <span class="nav-icon">🏢</span> Proveedores
+    </a>
+    <a href="/compras" class="nav-item {% if 'compra' in (request.endpoint or '') %}active{% endif %}">
+      <span class="nav-icon">🛒</span> Compras
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    Med Sis SRL · Córdoba, Argentina<br>
+    info@Med Sis.ar · (351) 509-8585
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+  <header class="topbar">
+    <div class="topbar-title">{% block topbar_title %}Sistema de Gestión{% endblock %}</div>
+    <div class="topbar-actions">
+      {% block topbar_actions %}{% endblock %}
+    </div>
+  </header>
+
+  <main class="content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for cat, msg in messages %}
+        <div class="alert alert-{{ cat }}">
+          {% if cat == 'success' %}✅{% else %}❌{% endif %} {{ msg }}
+        </div>
+      {% endfor %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+</div>
+
+</body>
+</html>
