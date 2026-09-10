@@ -42,12 +42,10 @@
     <table>
       <thead>
         <tr>
-          <th>ID</th>
           <th>Tipo</th>
-          <th>Fecha</th>
           <th>Afiliado</th>
-          <th>Profesional</th>
-          <th>Patología</th>
+          <th class="col-hide-mobile">Profesional</th>
+          <th class="col-hide-mobile">Patología</th>
           <th>Estado</th>
           <th>Acciones</th>
         </tr>
@@ -55,22 +53,20 @@
       <tbody>
         {% for e in emps %}
         <tr>
-          <td style="font-family:'DM Mono';font-size:11px;color:var(--gris-texto);">{{ e.id }}</td>
           <td>
             {% if e.tipo == 'Cronico' %}<span class="badge badge-blue">Crónico</span>
             {% elif e.tipo == 'Diabetes' %}<span class="badge badge-green">Diabetes</span>
-            {% else %}<span class="badge badge-purple">Discapacidad</span>{% endif %}
+            {% else %}<span class="badge badge-purple">Discap.</span>{% endif %}
           </td>
-          <td style="color:var(--gris-texto);">{{ e.fecha }}</td>
           <td>
             <strong>{{ e.afiliado.apellido }}, {{ e.afiliado.nombre }}</strong><br>
-            <span style="font-size:11px;color:var(--gris-texto);">DNI: {{ e.afiliado.dni }} · {{ e.afiliado.edad }} años</span>
+            <span style="font-size:11px;color:var(--gris-texto);">DNI: {{ e.afiliado.dni }}</span>
           </td>
-          <td>
+          <td class="col-hide-mobile">
             Dr/a. {{ e.medico.apellido }}<br>
             <span style="font-size:11px;color:var(--gris-texto);">Mat. {{ e.medico.matricula }}</span>
           </td>
-          <td>{{ e.patologia }}</td>
+          <td class="col-hide-mobile">{{ e.patologia }}</td>
           <td>
             {% if e.estado == 'Aprobado' %}<span class="badge badge-green">✓ Aprobado</span>
             {% elif e.estado == 'Pendiente' %}<span class="badge badge-yellow">⏳ Pendiente</span>

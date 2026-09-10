@@ -1,4 +1,4 @@
-# Sistema de Gestión de Auditoría Médica — Med Sis SRL
+# Sistema de Gestión de Auditoría Médica — Altaluna SRL
 
 Sistema web completo desarrollado en Python/Flask para la gestión de Auditoría Médica Crónica y Alto Costo.
 
@@ -29,7 +29,7 @@ Luego abrir: http://localhost:5000
 ## Estructura del proyecto
 
 ```
-Med Sis/
+altaluna/
 ├── app.py              # Aplicación Flask principal
 ├── data/
 │   └── db.json         # Base de datos JSON (persistente)
@@ -54,7 +54,7 @@ Med Sis/
 └── README.md
 ```
 
-## Cotización SaaS (según propuesta Med Sis)
+## Cotización SaaS (según propuesta Altaluna)
 
 - Modelo: 0,0045% per cápita por sistema (Cronicidad + Alto Costo)
 - Pago: mensual adelantado, hasta día 15 de cada mes
@@ -63,5 +63,5 @@ Med Sis/
 - Soporte: Lunes–Viernes 08:00–16:00
 
 ## Contacto
-Med Sis SRL · Av. Vélez Sarsfield 84, Piso 1°, Córdoba
-info@Med Sis.ar · (351) 509-8585
+Altaluna SRL · Av. Vélez Sarsfield 84, Piso 1°, Córdoba
+info@altaluna.ar · (351) 509-8585

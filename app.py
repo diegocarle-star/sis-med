@@ -5,7 +5,7 @@ from datetime import datetime
 import uuid
 
 app = Flask(__name__)
-app.secret_key = "Med Sis-secret-2026"
+app.secret_key = "medsys-secret-2026"
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "data", "db.json")
 

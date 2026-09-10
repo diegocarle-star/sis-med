@@ -38,16 +38,16 @@
     <table>
       <thead>
         <tr>
-          <th>Prioridad</th>
+          <th>Prio.</th>
           <th>Paciente</th>
-          <th>Fecha Prescripción</th>
-          <th>Médico Especialista</th>
+          <th class="col-hide-mobile">Fecha</th>
+          <th class="col-hide-mobile">Médico</th>
           <th>Medicamento</th>
-          <th>Tipo</th>
-          <th>Costo Estim.</th>
-          <th>Autorización</th>
+          <th class="col-hide-mobile">Tipo</th>
+          <th>Costo</th>
+          <th class="col-hide-mobile">Autorización</th>
           <th>Estado</th>
-          <th>Días</th>
+          <th class="col-hide-mobile">Días</th>
         </tr>
       </thead>
       <tbody>
@@ -58,17 +58,17 @@
             <strong>{{ c.afiliado.apellido }}, {{ c.afiliado.nombre }}</strong><br>
             <span style="font-size:11px;color:var(--gris-texto);">DNI: {{ c.afiliado.dni }}</span>
           </td>
-          <td style="color:var(--gris-texto);">{{ c.fecha_prescripcion }}</td>
-          <td>
+          <td class="col-hide-mobile" style="color:var(--gris-texto);">{{ c.fecha_prescripcion }}</td>
+          <td class="col-hide-mobile">
             Dr/a. {{ c.medico.apellido }}<br>
             <span style="font-size:11px;color:var(--gris-texto);">Mat. {{ c.medico.matricula }}</span>
           </td>
           <td><strong>{{ c.medicamento }}</strong></td>
-          <td><span class="badge badge-gray">{{ c.tipo }}</span></td>
+          <td class="col-hide-mobile"><span class="badge badge-gray">{{ c.tipo }}</span></td>
           <td style="font-family:'DM Mono';color:var(--azul-principal);">${{ "{:,.0f}".format(c.costo_estimado) }}</td>
-          <td><span class="badge badge-red">{{ c.autorizacion }}</span></td>
+          <td class="col-hide-mobile"><span class="badge badge-red">{{ c.autorizacion }}</span></td>
           <td><span class="badge badge-yellow">⚡ {{ c.estado }}</span></td>
-          <td style="font-family:'DM Mono';">{{ c.dias }}d</td>
+          <td class="col-hide-mobile" style="font-family:'DM Mono';">{{ c.dias }}d</td>
         </tr>
         {% endfor %}
       </tbody>

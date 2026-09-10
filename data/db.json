@@ -1,520 +1,67 @@
 {
   "afiliados": [
-    {
-      "id": "A001",
-      "apellido": "Pérez",
-      "nombre": "Juan Carlos",
-      "dni": "32123456",
-      "fecha_nacimiento": "1984-05-12",
-      "edad": 40,
-      "email": "jperez@email.com",
-      "telefono": "351-4123456",
-      "obra_social": "OSDE 210"
-    },
-    {
-      "id": "A002",
-      "apellido": "López",
-      "nombre": "Ana Sofía",
-      "dni": "27809876",
-      "fecha_nacimiento": "1979-11-03",
-      "edad": 45,
-      "email": "alopez@email.com",
-      "telefono": "351-5234567",
-      "obra_social": "OSDE 310"
-    },
-    {
-      "id": "A003",
-      "apellido": "Ramírez",
-      "nombre": "Diego",
-      "dni": "39987123",
-      "fecha_nacimiento": "1985-08-22",
-      "edad": 39,
-      "email": "dramirez@email.com",
-      "telefono": "351-6345678",
-      "obra_social": "OSDE 210"
-    },
-    {
-      "id": "A004",
-      "apellido": "González",
-      "nombre": "María Elena",
-      "dni": "28450789",
-      "fecha_nacimiento": "1976-03-17",
-      "edad": 48,
-      "email": "mgonzalez@email.com",
-      "telefono": "351-7456789",
-      "obra_social": "Swiss Medical"
-    },
-    {
-      "id": "A005",
-      "apellido": "Rodríguez",
-      "nombre": "Carlos Alberto",
-      "dni": "25670089",
-      "fecha_nacimiento": "1971-12-01",
-      "edad": 53,
-      "email": "crodriguez@email.com",
-      "telefono": "351-8567890",
-      "obra_social": "Galeno"
-    }
+    {"id": "A001", "apellido": "Pérez", "nombre": "Juan Carlos", "dni": "32123456", "fecha_nacimiento": "1984-05-12", "edad": 40, "email": "jperez@email.com", "telefono": "351-4123456", "obra_social": "OSDE 210"},
+    {"id": "A002", "apellido": "López", "nombre": "Ana Sofía", "dni": "27809876", "fecha_nacimiento": "1979-11-03", "edad": 45, "email": "alopez@email.com", "telefono": "351-5234567", "obra_social": "OSDE 310"},
+    {"id": "A003", "apellido": "Ramírez", "nombre": "Diego", "dni": "39987123", "fecha_nacimiento": "1985-08-22", "edad": 39, "email": "dramirez@email.com", "telefono": "351-6345678", "obra_social": "OSDE 210"},
+    {"id": "A004", "apellido": "González", "nombre": "María Elena", "dni": "28450789", "fecha_nacimiento": "1976-03-17", "edad": 48, "email": "mgonzalez@email.com", "telefono": "351-7456789", "obra_social": "Swiss Medical"},
+    {"id": "A005", "apellido": "Rodríguez", "nombre": "Carlos Alberto", "dni": "25670089", "fecha_nacimiento": "1971-12-01", "edad": 53, "email": "crodriguez@email.com", "telefono": "351-8567890", "obra_social": "Galeno"}
   ],
   "medicos": [
-    {
-      "id": "M001",
-      "apellido": "Herrera",
-      "nombre": "Marcelo",
-      "matricula": "70891",
-      "especialidad": "Clínica Médica",
-      "email": "mherrera@cmpc.org.ar"
-    },
-    {
-      "id": "M002",
-      "apellido": "Ruiz",
-      "nombre": "Alejandro",
-      "matricula": "54321",
-      "especialidad": "Endocrinología",
-      "email": "aruiz@cmpc.org.ar"
-    },
-    {
-      "id": "M003",
-      "apellido": "Gómez",
-      "nombre": "Patricia",
-      "matricula": "41879",
-      "especialidad": "Reumatología",
-      "email": "pgomez@cmpc.org.ar"
-    },
-    {
-      "id": "M004",
-      "apellido": "Sánchez",
-      "nombre": "Diego",
-      "matricula": "36519",
-      "especialidad": "Neurología",
-      "email": "dsanchez@cmpc.org.ar"
-    },
-    {
-      "id": "M005",
-      "apellido": "Martínez",
-      "nombre": "Laura",
-      "matricula": "12345",
-      "especialidad": "Oncología",
-      "email": "lmartinez@cmpc.org.ar"
-    }
+    {"id": "M001", "apellido": "Herrera", "nombre": "Marcelo", "matricula": "70891", "especialidad": "Clínica Médica", "email": "mherrera@cmpc.org.ar"},
+    {"id": "M002", "apellido": "Ruiz", "nombre": "Alejandro", "matricula": "54321", "especialidad": "Endocrinología", "email": "aruiz@cmpc.org.ar"},
+    {"id": "M003", "apellido": "Gómez", "nombre": "Patricia", "matricula": "41879", "especialidad": "Reumatología", "email": "pgomez@cmpc.org.ar"},
+    {"id": "M004", "apellido": "Sánchez", "nombre": "Diego", "matricula": "36519", "especialidad": "Neurología", "email": "dsanchez@cmpc.org.ar"},
+    {"id": "M005", "apellido": "Martínez", "nombre": "Laura", "matricula": "12345", "especialidad": "Oncología", "email": "lmartinez@cmpc.org.ar"}
   ],
   "empadronamientos": [
-    {
-      "id": "EMP-C-2026-001",
-      "tipo": "Cronico",
-      "afiliado_id": "A001",
-      "medico_id": "M001",
-      "fecha": "16/01/26",
-      "patologia": "Diabetes tipo 2",
-      "diagnostico": "DM tipo 2 con requerimiento de insulina",
-      "estado": "Pendiente",
-      "tratamiento": "Insulina NPH 10u/día"
-    },
-    {
-      "id": "EMP-C-2026-002",
-      "tipo": "Cronico",
-      "afiliado_id": "A002",
-      "medico_id": "M002",
-      "fecha": "16/01/26",
-      "patologia": "Hipertensión arterial",
-      "diagnostico": "HTA esencial controlada",
-      "estado": "Aprobado",
-      "tratamiento": "Enalapril 10mg/día"
-    },
-    {
-      "id": "EMP-D-2026-001",
-      "tipo": "Discapacidad",
-      "afiliado_id": "A003",
-      "medico_id": "M003",
-      "fecha": "16/01/26",
-      "patologia": "Artritis reumatoidea",
-      "diagnostico": "AR activa con compromiso poliarticular",
-      "estado": "Pendiente",
-      "tratamiento": "Metotrexato + Adalimumab"
-    },
-    {
-      "id": "EMP-C-2026-003",
-      "tipo": "Cronico",
-      "afiliado_id": "A004",
-      "medico_id": "M001",
-      "fecha": "16/01/26",
-      "patologia": "Diabetes tipo 2",
-      "diagnostico": "DM tipo 2 insulino-requirente",
-      "estado": "Aprobado",
-      "tratamiento": "Insulina Glargina 20u/día"
-    },
-    {
-      "id": "EMP-C-2026-004",
-      "tipo": "Cronico",
-      "afiliado_id": "A005",
-      "medico_id": "M004",
-      "fecha": "16/01/26",
-      "patologia": "Epilepsia",
-      "diagnostico": "Epilepsia focal con generalización",
-      "estado": "Rechazado",
-      "tratamiento": "Clonazepam 2mg/día"
-    },
-    {
-      "id": "EMP-DB-2026-001",
-      "tipo": "Diabetes",
-      "afiliado_id": "A001",
-      "medico_id": "M002",
-      "fecha": "16/01/26",
-      "patologia": "Diabetes tipo 1",
-      "diagnostico": "DM tipo 1 con mal control metabólico",
-      "estado": "Pendiente",
-      "tratamiento": "Insulina NPH + Regular"
-    },
-    {
-      "id": "EMP-C-2026-005",
-      "tipo": "Cronico",
-      "afiliado_id": "A002",
-      "medico_id": "M003",
-      "fecha": "16/01/26",
-      "patologia": "Hipotiroidismo",
-      "diagnostico": "Hipotiroidismo primario autoinmune",
-      "estado": "Aprobado",
-      "tratamiento": "Levotiroxina 100mcg/día"
-    },
-    {
-      "id": "EMP-C-2026-CDB9",
-      "tipo": "Cronico",
-      "afiliado_id": "A001",
-      "medico_id": "M001",
-      "fecha": "09/09/26",
-      "patologia": "fsdfsdf",
-      "diagnostico": "fsdfsdfs",
-      "estado": "Pendiente",
-      "tratamiento": "fsdfsdf"
-    }
+    {"id": "EMP-C-2026-001", "tipo": "Cronico", "afiliado_id": "A001", "medico_id": "M001", "fecha": "16/01/26", "patologia": "Diabetes tipo 2", "diagnostico": "DM tipo 2 con requerimiento de insulina", "estado": "Pendiente", "tratamiento": "Insulina NPH 10u/día"},
+    {"id": "EMP-C-2026-002", "tipo": "Cronico", "afiliado_id": "A002", "medico_id": "M002", "fecha": "16/01/26", "patologia": "Hipertensión arterial", "diagnostico": "HTA esencial controlada", "estado": "Aprobado", "tratamiento": "Enalapril 10mg/día"},
+    {"id": "EMP-D-2026-001", "tipo": "Discapacidad", "afiliado_id": "A003", "medico_id": "M003", "fecha": "16/01/26", "patologia": "Artritis reumatoidea", "diagnostico": "AR activa con compromiso poliarticular", "estado": "Pendiente", "tratamiento": "Metotrexato + Adalimumab"},
+    {"id": "EMP-C-2026-003", "tipo": "Cronico", "afiliado_id": "A004", "medico_id": "M001", "fecha": "16/01/26", "patologia": "Diabetes tipo 2", "diagnostico": "DM tipo 2 insulino-requirente", "estado": "Aprobado", "tratamiento": "Insulina Glargina 20u/día"},
+    {"id": "EMP-C-2026-004", "tipo": "Cronico", "afiliado_id": "A005", "medico_id": "M004", "fecha": "16/01/26", "patologia": "Epilepsia", "diagnostico": "Epilepsia focal con generalización", "estado": "Rechazado", "tratamiento": "Clonazepam 2mg/día"},
+    {"id": "EMP-DB-2026-001", "tipo": "Diabetes", "afiliado_id": "A001", "medico_id": "M002", "fecha": "16/01/26", "patologia": "Diabetes tipo 1", "diagnostico": "DM tipo 1 con mal control metabólico", "estado": "Pendiente", "tratamiento": "Insulina NPH + Regular"},
+    {"id": "EMP-C-2026-005", "tipo": "Cronico", "afiliado_id": "A002", "medico_id": "M003", "fecha": "16/01/26", "patologia": "Hipotiroidismo", "diagnostico": "Hipotiroidismo primario autoinmune", "estado": "Aprobado", "tratamiento": "Levotiroxina 100mcg/día"}
   ],
   "alto_costo": [
-    {
-      "id": "AC-2026-001",
-      "afiliado_id": "A001",
-      "medico_id": "M005",
-      "fecha_prescripcion": "26-02-2026",
-      "medicamento": "Adalimumab",
-      "tipo": "ONC",
-      "prioridad": "Media",
-      "costo_estimado": 75000,
-      "estado": "Urgente",
-      "autorizacion": "Requerida",
-      "dias": 20
-    },
-    {
-      "id": "AC-2026-002",
-      "afiliado_id": "A004",
-      "medico_id": "M004",
-      "fecha_prescripcion": "28-02-2026",
-      "medicamento": "Rituximab",
-      "tipo": "ONC",
-      "prioridad": "Media",
-      "costo_estimado": 75000,
-      "estado": "Urgente",
-      "autorizacion": "Requerida",
-      "dias": 18
-    },
-    {
-      "id": "AC-2026-003",
-      "afiliado_id": "A002",
-      "medico_id": "M002",
-      "fecha_prescripcion": "01-03-2026",
-      "medicamento": "Insulina Degludec",
-      "tipo": "ONC",
-      "prioridad": "Media",
-      "costo_estimado": 75000,
-      "estado": "Urgente",
-      "autorizacion": "Requerida",
-      "dias": 15
-    },
-    {
-      "id": "AC-2026-004",
-      "afiliado_id": "A005",
-      "medico_id": "M003",
-      "fecha_prescripcion": "02-03-2026",
-      "medicamento": "Tocilizumab",
-      "tipo": "ONC",
-      "prioridad": "Media",
-      "costo_estimado": 75000,
-      "estado": "Urgente",
-      "autorizacion": "Requerida",
-      "dias": 12
-    },
-    {
-      "id": "AC-2026-005",
-      "afiliado_id": "A003",
-      "medico_id": "M005",
-      "fecha_prescripcion": "05-03-2026",
-      "medicamento": "Trastuzumab",
-      "tipo": "ONC",
-      "prioridad": "Alta",
-      "costo_estimado": 120000,
-      "estado": "Urgente",
-      "autorizacion": "Requerida",
-      "dias": 8
-    }
+    {"id": "AC-2026-001", "afiliado_id": "A001", "medico_id": "M005", "fecha_prescripcion": "26-02-2026", "medicamento": "Adalimumab", "tipo": "ONC", "prioridad": "Media", "costo_estimado": 75000, "estado": "Urgente", "autorizacion": "Requerida", "dias": 20},
+    {"id": "AC-2026-002", "afiliado_id": "A004", "medico_id": "M004", "fecha_prescripcion": "28-02-2026", "medicamento": "Rituximab", "tipo": "ONC", "prioridad": "Media", "costo_estimado": 75000, "estado": "Urgente", "autorizacion": "Requerida", "dias": 18},
+    {"id": "AC-2026-003", "afiliado_id": "A002", "medico_id": "M002", "fecha_prescripcion": "01-03-2026", "medicamento": "Insulina Degludec", "tipo": "ONC", "prioridad": "Media", "costo_estimado": 75000, "estado": "Urgente", "autorizacion": "Requerida", "dias": 15},
+    {"id": "AC-2026-004", "afiliado_id": "A005", "medico_id": "M003", "fecha_prescripcion": "02-03-2026", "medicamento": "Tocilizumab", "tipo": "ONC", "prioridad": "Media", "costo_estimado": 75000, "estado": "Urgente", "autorizacion": "Requerida", "dias": 12},
+    {"id": "AC-2026-005", "afiliado_id": "A003", "medico_id": "M005", "fecha_prescripcion": "05-03-2026", "medicamento": "Trastuzumab", "tipo": "ONC", "prioridad": "Alta", "costo_estimado": 120000, "estado": "Urgente", "autorizacion": "Requerida", "dias": 8}
   ],
   "vademecum": [
-    {
-      "id": "V001",
-      "monodrogra": "Adalimumab",
-      "nombre_comercial": "Humira",
-      "presentacion": "Jeringa 40mg",
-      "laboratorio": "AbbVie",
-      "condicion": "Con Auditoría",
-      "segmento": "Alto Costo"
-    },
-    {
-      "id": "V002",
-      "monodrogra": "Amlodipina",
-      "nombre_comercial": "Norvas",
-      "presentacion": "Comp. 5mg x 30",
-      "laboratorio": "Pfizer",
-      "condicion": "Autorizado",
-      "segmento": "Cronicidad"
-    },
-    {
-      "id": "V003",
-      "monodrogra": "Amoxicilina",
-      "nombre_comercial": "Amoxidal 500",
-      "presentacion": "Comp. 500mg x 12",
-      "laboratorio": "Roemmers",
-      "condicion": "Autorizado",
-      "segmento": "Ambulatorio"
-    },
-    {
-      "id": "V004",
-      "monodrogra": "Atorvastatina",
-      "nombre_comercial": "Atorvastatina",
-      "presentacion": "Comp. 20mg x 30",
-      "laboratorio": "Roemmers",
-      "condicion": "Autorizado",
-      "segmento": "Cronicidad"
-    },
-    {
-      "id": "V005",
-      "monodrogra": "Belimumab",
-      "nombre_comercial": "Benlysta",
-      "presentacion": "FA 200mg",
-      "laboratorio": "GSK",
-      "condicion": "Con Auditoría",
-      "segmento": "Alto Costo"
-    },
-    {
-      "id": "V006",
-      "monodrogra": "Clonazepam",
-      "nombre_comercial": "Rivotril",
-      "presentacion": "Comp. 2mg x 30",
-      "laboratorio": "Roche",
-      "condicion": "Autorizado",
-      "segmento": "Cronicidad"
-    },
-    {
-      "id": "V007",
-      "monodrogra": "Duloxetina",
-      "nombre_comercial": "Cymbalta",
-      "presentacion": "Caps. 60mg x 28",
-      "laboratorio": "Lilly",
-      "condicion": "Autorizado",
-      "segmento": "Cronicidad"
-    },
-    {
-      "id": "V008",
-      "monodrogra": "Enalapril",
-      "nombre_comercial": "Lotrial",
-      "presentacion": "Comp. 10mg x 30",
-      "laboratorio": "Roemmers",
-      "condicion": "Autorizado",
-      "segmento": "Cronicidad"
-    },
-    {
-      "id": "V009",
-      "monodrogra": "Escitalopram",
-      "nombre_comercial": "Lexapro",
-      "presentacion": "Comp. 10mg x 28",
-      "laboratorio": "Lundbeck",
-      "condicion": "Autorizado",
-      "segmento": "Ambulatorio"
-    },
-    {
-      "id": "V010",
-      "monodrogra": "Ibuprofeno",
-      "nombre_comercial": "Ibuprofen 600",
-      "presentacion": "Comp. 600mg x 20",
-      "laboratorio": "Bagó",
-      "condicion": "Autorizado",
-      "segmento": "Ambulatorio"
-    },
-    {
-      "id": "V011",
-      "monodrogra": "Infliximab",
-      "nombre_comercial": "Remicade",
-      "presentacion": "FA 100mg",
-      "laboratorio": "Janssen",
-      "condicion": "Con Auditoría",
-      "segmento": "Alto Costo"
-    },
-    {
-      "id": "V012",
-      "monodrogra": "Insulina Glargina",
-      "nombre_comercial": "Lantus",
-      "presentacion": "Lapicera 3ml",
-      "laboratorio": "Sanofi",
-      "condicion": "Autorizado",
-      "segmento": "Diabetes"
-    }
+    {"id": "V001", "monodrogra": "Adalimumab", "nombre_comercial": "Humira", "presentacion": "Jeringa 40mg", "laboratorio": "AbbVie", "condicion": "Con Auditoría", "segmento": "Alto Costo"},
+    {"id": "V002", "monodrogra": "Amlodipina", "nombre_comercial": "Norvas", "presentacion": "Comp. 5mg x 30", "laboratorio": "Pfizer", "condicion": "Autorizado", "segmento": "Cronicidad"},
+    {"id": "V003", "monodrogra": "Amoxicilina", "nombre_comercial": "Amoxidal 500", "presentacion": "Comp. 500mg x 12", "laboratorio": "Roemmers", "condicion": "Autorizado", "segmento": "Ambulatorio"},
+    {"id": "V004", "monodrogra": "Atorvastatina", "nombre_comercial": "Atorvastatina", "presentacion": "Comp. 20mg x 30", "laboratorio": "Roemmers", "condicion": "Autorizado", "segmento": "Cronicidad"},
+    {"id": "V005", "monodrogra": "Belimumab", "nombre_comercial": "Benlysta", "presentacion": "FA 200mg", "laboratorio": "GSK", "condicion": "Con Auditoría", "segmento": "Alto Costo"},
+    {"id": "V006", "monodrogra": "Clonazepam", "nombre_comercial": "Rivotril", "presentacion": "Comp. 2mg x 30", "laboratorio": "Roche", "condicion": "Autorizado", "segmento": "Cronicidad"},
+    {"id": "V007", "monodrogra": "Duloxetina", "nombre_comercial": "Cymbalta", "presentacion": "Caps. 60mg x 28", "laboratorio": "Lilly", "condicion": "Autorizado", "segmento": "Cronicidad"},
+    {"id": "V008", "monodrogra": "Enalapril", "nombre_comercial": "Lotrial", "presentacion": "Comp. 10mg x 30", "laboratorio": "Roemmers", "condicion": "Autorizado", "segmento": "Cronicidad"},
+    {"id": "V009", "monodrogra": "Escitalopram", "nombre_comercial": "Lexapro", "presentacion": "Comp. 10mg x 28", "laboratorio": "Lundbeck", "condicion": "Autorizado", "segmento": "Ambulatorio"},
+    {"id": "V010", "monodrogra": "Ibuprofeno", "nombre_comercial": "Ibuprofen 600", "presentacion": "Comp. 600mg x 20", "laboratorio": "Bagó", "condicion": "Autorizado", "segmento": "Ambulatorio"},
+    {"id": "V011", "monodrogra": "Infliximab", "nombre_comercial": "Remicade", "presentacion": "FA 100mg", "laboratorio": "Janssen", "condicion": "Con Auditoría", "segmento": "Alto Costo"},
+    {"id": "V012", "monodrogra": "Insulina Glargina", "nombre_comercial": "Lantus", "presentacion": "Lapicera 3ml", "laboratorio": "Sanofi", "condicion": "Autorizado", "segmento": "Diabetes"}
   ],
   "proveedores": [
-    {
-      "id": "P001",
-      "nombre": "Droguería Del Sud S.A.",
-      "cuit": "30-70000444-9",
-      "tipo": "Droguería",
-      "email": "pedidos@delsud.com.ar",
-      "telefono": "(0351) 456-7890",
-      "contactos": 2,
-      "estado": "Activo"
-    },
-    {
-      "id": "P002",
-      "nombre": "Droguería Monroe Americana S.A.",
-      "cuit": "30-70000222-8",
-      "tipo": "Droguería",
-      "email": "ventas@monroe.com.ar",
-      "telefono": "(011) 458-8500",
-      "contactos": 2,
-      "estado": "Activo"
-    },
-    {
-      "id": "P003",
-      "nombre": "Droguería Suizo Argentina S.A.",
-      "cuit": "30-50000086-6",
-      "tipo": "Droguería",
-      "email": "logistica@suizoargentina.com.ar",
-      "telefono": "(011) 4302-0000",
-      "contactos": 2,
-      "estado": "Activo"
-    },
-    {
-      "id": "P004",
-      "nombre": "Gador S.A.",
-      "cuit": "30-50000111-1",
-      "tipo": "Laboratorio",
-      "email": "licitaciones@gador.com.ar",
-      "telefono": "(011) 4858-9000",
-      "contactos": 4,
-      "estado": "Activo"
-    },
-    {
-      "id": "P005",
-      "nombre": "Laboratorio Bagó S.A.",
-      "cuit": "30-50000111-5",
-      "tipo": "Laboratorio",
-      "email": "compras@lago.com.ar",
-      "telefono": "(011) 4544-2000",
-      "contactos": 1,
-      "estado": "Activo"
-    },
-    {
-      "id": "P006",
-      "nombre": "Roemmers S.A.I.C.F.",
-      "cuit": "30-50000005-7",
-      "tipo": "Laboratorio",
-      "email": "institucional@roemmers.com.ar",
-      "telefono": "(011) 4800-9000",
-      "contactos": 2,
-      "estado": "Activo"
-    },
-    {
-      "id": "P007",
-      "nombre": "Rafina S.A.I.C.",
-      "cuit": "30-50000666-3",
-      "tipo": "Anfiox",
-      "email": "ventas@rafina.com.ar",
-      "telefono": "(0341) 435-2000",
-      "contactos": 1,
-      "estado": "Activo"
-    }
+    {"id": "P001", "nombre": "Droguería Del Sud S.A.", "cuit": "30-70000444-9", "tipo": "Droguería", "email": "pedidos@delsud.com.ar", "telefono": "(0351) 456-7890", "contactos": 2, "estado": "Activo"},
+    {"id": "P002", "nombre": "Droguería Monroe Americana S.A.", "cuit": "30-70000222-8", "tipo": "Droguería", "email": "ventas@monroe.com.ar", "telefono": "(011) 458-8500", "contactos": 2, "estado": "Activo"},
+    {"id": "P003", "nombre": "Droguería Suizo Argentina S.A.", "cuit": "30-50000086-6", "tipo": "Droguería", "email": "logistica@suizoargentina.com.ar", "telefono": "(011) 4302-0000", "contactos": 2, "estado": "Activo"},
+    {"id": "P004", "nombre": "Gador S.A.", "cuit": "30-50000111-1", "tipo": "Laboratorio", "email": "licitaciones@gador.com.ar", "telefono": "(011) 4858-9000", "contactos": 4, "estado": "Activo"},
+    {"id": "P005", "nombre": "Laboratorio Bagó S.A.", "cuit": "30-50000111-5", "tipo": "Laboratorio", "email": "compras@lago.com.ar", "telefono": "(011) 4544-2000", "contactos": 1, "estado": "Activo"},
+    {"id": "P006", "nombre": "Roemmers S.A.I.C.F.", "cuit": "30-50000005-7", "tipo": "Laboratorio", "email": "institucional@roemmers.com.ar", "telefono": "(011) 4800-9000", "contactos": 2, "estado": "Activo"},
+    {"id": "P007", "nombre": "Rafina S.A.I.C.", "cuit": "30-50000666-3", "tipo": "Anfiox", "email": "ventas@rafina.com.ar", "telefono": "(0341) 435-2000", "contactos": 1, "estado": "Activo"}
   ],
   "recetas": [
-    {
-      "id": "REC-001",
-      "afiliado_id": "A002",
-      "medico_id": "M001",
-      "fecha": "01/08/2026",
-      "medicamento": "Enalapril 10mg",
-      "tipo": "Cronico",
-      "estado": "Entregada"
-    },
-    {
-      "id": "REC-002",
-      "afiliado_id": "A002",
-      "medico_id": "M001",
-      "fecha": "01/09/2026",
-      "medicamento": "Enalapril 10mg",
-      "tipo": "Cronico",
-      "estado": "Pendiente"
-    },
-    {
-      "id": "REC-003",
-      "afiliado_id": "A004",
-      "medico_id": "M001",
-      "fecha": "01/08/2026",
-      "medicamento": "Insulina Glargina",
-      "tipo": "Diabetes",
-      "estado": "Entregada"
-    },
-    {
-      "id": "REC-004",
-      "afiliado_id": "A001",
-      "medico_id": "M002",
-      "fecha": "15/08/2026",
-      "medicamento": "Metformina 850mg",
-      "tipo": "Diabetes",
-      "estado": "Entregada"
-    }
+    {"id": "REC-001", "afiliado_id": "A002", "medico_id": "M001", "fecha": "01/08/2026", "medicamento": "Enalapril 10mg", "tipo": "Cronico", "estado": "Entregada"},
+    {"id": "REC-002", "afiliado_id": "A002", "medico_id": "M001", "fecha": "01/09/2026", "medicamento": "Enalapril 10mg", "tipo": "Cronico", "estado": "Pendiente"},
+    {"id": "REC-003", "afiliado_id": "A004", "medico_id": "M001", "fecha": "01/08/2026", "medicamento": "Insulina Glargina", "tipo": "Diabetes", "estado": "Entregada"},
+    {"id": "REC-004", "afiliado_id": "A001", "medico_id": "M002", "fecha": "15/08/2026", "medicamento": "Metformina 850mg", "tipo": "Diabetes", "estado": "Entregada"}
   ],
   "ordenes_compra": [
-    {
-      "id": "OC-001",
-      "proveedor_id": "P001",
-      "fecha": "01/09/2026",
-      "total": 125000,
-      "estado": "Entregada",
-      "items": 3
-    },
-    {
-      "id": "OC-002",
-      "proveedor_id": "P003",
-      "fecha": "02/09/2026",
-      "total": 89000,
-      "estado": "Enviada",
-      "items": 2
-    },
-    {
-      "id": "OC-003",
-      "proveedor_id": "P002",
-      "fecha": "05/09/2026",
-      "total": 210000,
-      "estado": "Pendiente",
-      "items": 5
-    },
-    {
-      "id": "OC-004",
-      "proveedor_id": "P004",
-      "fecha": "06/09/2026",
-      "total": 45000,
-      "estado": "Cancelada",
-      "items": 1
-    },
-    {
-      "id": "OC-005",
-      "proveedor_id": "P001",
-      "fecha": "09/09/2026",
-      "total": 2,
-      "estado": "Pendiente",
-      "items": 2
-    }
+    {"id": "OC-001", "proveedor_id": "P001", "fecha": "01/09/2026", "total": 125000, "estado": "Entregada", "items": 3},
+    {"id": "OC-002", "proveedor_id": "P003", "fecha": "02/09/2026", "total": 89000, "estado": "Enviada", "items": 2},
+    {"id": "OC-003", "proveedor_id": "P002", "fecha": "05/09/2026", "total": 210000, "estado": "Pendiente", "items": 5},
+    {"id": "OC-004", "proveedor_id": "P004", "fecha": "06/09/2026", "total": 45000, "estado": "Cancelada", "items": 1}
   ]
 }
